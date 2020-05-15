@@ -1,0 +1,11 @@
+<div class="Wrapper" nz-row >
+    <div *ngFor="let doc of docs" nz-col class="gutter-row" (click)="openDoc(doc)" [nzSpan]="4">
+        <div class="inner-box">
+         <div class="card">
+            <a class='delete' href="#">delete...</a>
+             <b>{{doc.name}}</b>
+             <p>{{doc.description}}</p>
+         </div>
+    </div>
+</div>
+</div>

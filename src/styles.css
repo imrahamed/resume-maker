@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+.heading{
+    width: fit-content;
+    color: #ffff;
+    font-weight: 600;
+    font-size: 24px;
+    display: inline-block;
+}
+#addNew {
+    float: right;
+    color: #ffff;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+}

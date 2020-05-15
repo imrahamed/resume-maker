@@ -1,0 +1,39 @@
+<!-- NG-ZORRO -->
+ <nz-layout>
+      <nz-header>
+        <div class="heading">Make resume Simple</div>
+        <span (click)="showModal()" id="addNew">⊕ Add New</span>
+      </nz-header>
+      <nz-content>
+        <div class="inner-content"><router-outlet></router-outlet></div>
+      </nz-content>
+      <nz-footer>Resume Maker ©2020 Implement By Imrahamed</nz-footer>
+    </nz-layout>
+
+
+    <nz-modal
+    [(nzVisible)]="isVisible"
+    [nzTitle]="modalTitle"
+    [nzContent]="modalContent"
+    [nzFooter]="modalFooter"
+    (nzOnCancel)="handleCancel()"
+  >
+    <ng-template #modalTitle>
+      Add New Document
+    </ng-template>
+
+    <ng-template #modalContent>
+      <div>
+        <nz-input-group nzAddOnBefore="Name">
+          <input type="text" nz-input [(ngModel)]="model.name" />
+        </nz-input-group>
+      </div>
+      <div style="margin-top: 12px;">
+        <textarea nz-input placeholder="Description" [(ngModel)]="model.description" [nzAutosize]="{ minRows: 3, maxRows: 5 }"></textarea>
+      </div>
+    </ng-template>
+
+    <ng-template #modalFooter>
+      <button nz-button nzType="primary" (click)="handleOk()" [nzLoading]="isConfirmLoading">Add</button>
+    </ng-template>
+  </nz-modal>
