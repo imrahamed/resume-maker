@@ -13,3 +13,6 @@
     font-weight: 600;
     cursor: pointer;
 }
+.ant-progress-bg {
+    background-color: #FFB33E!important;
+}
