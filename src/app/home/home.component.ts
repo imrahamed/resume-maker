@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { DataService } from '../data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,7 @@ import { DataService } from '../data.service';
 export class HomeComponent implements OnInit {
   docs: any[];
 
-  constructor(private dbService: NgxIndexedDBService,  private dataService: DataService) {}
+  constructor(private dbService: NgxIndexedDBService,  private dataService: DataService, private router: Router) {}
 
   ngOnInit() {
     this.getAll();
@@ -24,8 +25,9 @@ export class HomeComponent implements OnInit {
       this.docs = res;
     });
   }
-  openDoc(doc) {
-    
+  openDoc(id) {
+    console.log(id);
+    this.router.navigateByUrl(`/resume/${id}`)
   }
 
 }

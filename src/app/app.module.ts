@@ -11,6 +11,8 @@ import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { HomeComponent } from './home/home.component';
 import { NgxIndexedDBModule, DBConfig } from 'ngx-indexed-db';
+import { ResumeLayoutComponent } from './resume-layout/resume-layout.component';
+import { ResumeWrapperComponent } from './resume-wrapper/resume-wrapper.component';
 
 registerLocaleData(en);
 
@@ -32,7 +34,9 @@ const dbConfig: DBConfig  = {
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    ResumeLayoutComponent,
+    ResumeWrapperComponent
   ],
   imports: [
     BrowserModule,
