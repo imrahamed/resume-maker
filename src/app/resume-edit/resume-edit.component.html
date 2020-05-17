@@ -1,5 +1,5 @@
-<div class="wrapper">
-    <h1 class="edit-header">Resume Editor</h1>
+<div class="wrapper-form">
+    <h2 class="edit-header">Resume Editor</h2>
     <form [formGroup]="resumeForm" (submit)="onResumeSubmit()">
         <nz-form-item>
             <nz-form-label [nzSpan]="5" nzFor="firstName">Name</nz-form-label>
@@ -79,7 +79,7 @@
             <div *ngFor="let skill of skills.controls; let i = index;">
                 <div [formGroupName]="i">
                     <br>
-                    <nz-card style="max-width: 500px;display: block;margin: 0 auto;" [nzExtra]="skillTemplate">
+                    <nz-card class="form-card" [nzExtra]="skillTemplate">
                         <nz-form-item>
                             <nz-form-label [nzSpan]="6" nzFor="skillName">Name</nz-form-label>
                             <nz-form-control [nzSpan]="16">
@@ -110,7 +110,7 @@
             <div *ngFor="let edu of education.controls; let j = index;">
                 <div [formGroupName]="j">
                     <br />
-                    <nz-card style="max-width: 500px;display: block;margin: 0 auto;" [nzExtra]="educationTemplate">
+                    <nz-card class="form-card" [nzExtra]="educationTemplate">
                         <nz-form-item>
                             <nz-form-label [nzSpan]="6" nzFor="degree">Degree</nz-form-label>
                             <nz-form-control [nzSpan]="18">
@@ -164,7 +164,7 @@
             <div *ngFor="let emp of employment.controls; let j = index;">
                 <div [formGroupName]="j">
                     <br />
-                    <nz-card style="max-width: 500px;display: block;margin: 0 auto;" [nzExtra]="employmentTemplate">
+                    <nz-card class="form-card" [nzExtra]="employmentTemplate">
                         <nz-form-item>
                             <nz-form-label [nzSpan]="6" nzFor="jobTitle">Job Title</nz-form-label>
                             <nz-form-control [nzSpan]="18">
@@ -203,7 +203,7 @@
                             <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box"></div></div>
                             <nz-form-control [nzSpan]="18">
                                 <label nz-checkbox type="text" name="isCurrent" formControlName="isCurrent">I Currently
-                                    Wrok Here</label>
+                                    Work Here</label>
                             </nz-form-control>
                         </nz-form-item>
                     </nz-card>

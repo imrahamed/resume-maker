@@ -23,3 +23,13 @@
     height: 90vh;
     overflow-y: scroll;
 } */
+
+
+.wrapper-form form label::after {
+    content: "" !important;
+}
+
+.wrapper-form form label{
+    font-weight: 700 !important;
+    color: #575151;
+}
