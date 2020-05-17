@@ -1,8 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~quill/dist/quill.core.css';
-@import '~quill/dist/quill.bubble.css';
-@import '~quill/dist/quill.snow.css';
-.heading{
+@import "~quill/dist/quill.core.css";
+@import "~quill/dist/quill.bubble.css";
+@import "~quill/dist/quill.snow.css";
+.heading {
     width: fit-content;
     color: #ffff;
     font-weight: 600;
@@ -17,19 +17,34 @@
     cursor: pointer;
 }
 .ant-progress-bg {
-    background-color: #FFB33E!important;
+    background-color: #ffb33e !important;
 }
 /* .wrapper, #resumeWrapper {
     height: 90vh;
     overflow-y: scroll;
 } */
 
-
 .wrapper-form form label::after {
     content: "" !important;
 }
 
-.wrapper-form form label{
+.wrapper-form form label {
     font-weight: 700 !important;
     color: #575151;
+}
+
+.ant-card-body {
+    padding-bottom: 5px;
+}
+
+.ant-form-item {
+    margin: 0px 0px 10px;
+}
+
+.ant-card-head{
+    max-height: 15px;
+}
+
+.ant-card-extra{
+    padding: 8px 0;
 }
