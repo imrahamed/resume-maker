@@ -149,6 +149,7 @@ export class ResumeEditComponent implements OnInit {
         this.dataService.resumesendMessage(this.dataForDb);
         this.message.success('Data Updated');
         this.loading = false;
+        window.scrollTo(0, 0)
       },
       error => {
         this.message.success('Error Updating Data');
