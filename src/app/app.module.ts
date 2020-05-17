@@ -14,7 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { NgxIndexedDBModule, DBConfig } from 'ngx-indexed-db';
 import { ResumeLayoutComponent } from './resume-layout/resume-layout.component';
 import { ResumeWrapperComponent } from './resume-wrapper/resume-wrapper.component';
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from '@angular/forms';
 import { ResumeEditComponent } from './resume-edit/resume-edit.component';
 import { QuillModule } from 'ngx-quill';
 
