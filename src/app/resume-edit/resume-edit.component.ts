@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormArray } from "@angular/forms";
+import { NgxIndexedDBService } from 'ngx-indexed-db';
+import { ActivatedRoute } from "@angular/router";
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-resume-edit',
@@ -8,9 +11,52 @@ import { FormBuilder, Validators, FormArray } from "@angular/forms";
 })
 export class ResumeEditComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) { }
+  dataForDb: any;
+  id: number;
+  loading: boolean;
+  constructor(private fb: FormBuilder, private dbService: NgxIndexedDBService, private route: ActivatedRoute, private message: NzMessageService) { }
 
   ngOnInit() {
+    this.id = +this.route.snapshot.paramMap.get('id')
+    this.getDataBYId();
+  }
+
+  getDataBYId(): void {
+    this.loading = true;
+    this.dbService.getByKey('documents', this.id).then(
+      resume => {
+        this.dataForDb = resume;
+        this.updateDataToFields();
+        this.message.success("Data Retreived");
+        this.loading = false;
+      },
+      error => {
+        this.loading = false;
+        this.message.error("Error Occured");
+        console.log(error);
+      }
+    );
+  }
+
+  updateDataToFields(): void {
+    if (this.dataForDb.resumeData) {
+      this.resumeForm.patchValue(this.dataForDb.resumeData)
+    }
+  }
+
+  updateById(): void {
+    this.loading = true;
+    this.dbService.update('documents', this.dataForDb).then(
+      () => {
+        this.message.success("Data Updated");
+        this.loading = false;
+      },
+      error => {
+        this.message.success("Error Updating Data");
+        this.loading = false;
+        console.log(error);
+      }
+    );
   }
 
 
@@ -39,7 +85,8 @@ export class ResumeEditComponent implements OnInit {
   });
 
   onResumeSubmit(): void {
-    console.log(this.resumeForm.value)
+    this.dataForDb.resumeData = this.resumeForm.value;
+    this.updateById()
   }
 
   userSkills() {

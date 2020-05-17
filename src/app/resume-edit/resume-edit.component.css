@@ -9,3 +9,7 @@
 .resume-submit {
     margin-left: 45%;
 }
+
+label::after {
+    content: none !important;
+}
