@@ -1,5 +1,7 @@
 #Wrapper{
     padding: 12px;
+    height: 85vh;
+    /* overflow: hidden; */
 }
 .div-a-half{
     display: inline-block;

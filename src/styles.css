@@ -1,4 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.bubble.css';
+@import '~quill/dist/quill.snow.css';
 .heading{
     width: fit-content;
     color: #ffff;
@@ -16,3 +19,7 @@
 .ant-progress-bg {
     background-color: #FFB33E!important;
 }
+/* .wrapper, #resumeWrapper {
+    height: 90vh;
+    overflow-y: scroll;
+} */

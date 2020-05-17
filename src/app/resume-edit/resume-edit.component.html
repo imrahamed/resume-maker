@@ -63,8 +63,9 @@
         <nz-form-item>
             <nz-form-label [nzSpan]="6" nzFor="careerObjective">Career Objective</nz-form-label>
             <nz-form-control [nzSpan]="14">
-                <textarea nz-input name="careerObjective" type="text" formControlName="careerObjective"
-                    [nzAutosize]="{ minRows: 2, maxRows: 6 }"></textarea>
+                <quill-editor formControlName="careerObjective" [styles]="{height: '200px'}"></quill-editor>
+                <!-- <textarea nz-input name="careerObjective" type="text" formControlName="careerObjective"
+                    [nzAutosize]="{ minRows: 2, maxRows: 6 }"></textarea> -->
             </nz-form-control>
         </nz-form-item>
         <br />
@@ -139,8 +140,9 @@
                         <nz-form-item>
                             <nz-form-label [nzSpan]="6" nzFor="description">Description</nz-form-label>
                             <nz-form-control [nzSpan]="18">
-                                <textarea nz-input name="description" type="text" formControlName="description"
-                                    [nzAutosize]="{ minRows: 3, maxRows: 6 }"></textarea>
+                                <quill-editor formControlName="description" [styles]="{height: '120px'}"></quill-editor>
+                                <!-- <textarea nz-input name="description" type="text" formControlName="description"
+                                    [nzAutosize]="{ minRows: 3, maxRows: 6 }"></textarea> -->
                             </nz-form-control>
                         </nz-form-item>
                     </nz-card>
@@ -192,8 +194,9 @@
                         <nz-form-item>
                             <nz-form-label [nzSpan]="6" nzFor="description">Description</nz-form-label>
                             <nz-form-control [nzSpan]="18">
-                                <textarea nz-input name="description" type="text" formControlName="description"
-                                    [nzAutosize]="{ minRows: 3, maxRows: 6 }"></textarea>
+                                <quill-editor formControlName="description" [styles]="{height: '120px'}"></quill-editor>
+                                <!-- <textarea nz-input name="description" type="text" formControlName="description"
+                                    [nzAutosize]="{ minRows: 3, maxRows: 6 }"></textarea> -->
                             </nz-form-control>
                         </nz-form-item>
                     </nz-card>

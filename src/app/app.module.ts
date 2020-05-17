@@ -16,6 +16,7 @@ import { ResumeLayoutComponent } from './resume-layout/resume-layout.component';
 import { ResumeWrapperComponent } from './resume-wrapper/resume-wrapper.component';
 import { ReactiveFormsModule } from "@angular/forms";
 import { ResumeEditComponent } from './resume-edit/resume-edit.component';
+import { QuillModule } from 'ngx-quill';
 
 registerLocaleData(en);
 
@@ -51,6 +52,15 @@ const dbConfig: DBConfig = {
     BrowserAnimationsModule,
     NgxIndexedDBModule.forRoot(dbConfig),
     ReactiveFormsModule,
+    QuillModule.forRoot({
+      modules: {
+        toolbar: [
+          ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+          ['blockquote', 'code-block'],
+          [{ list: 'ordered'}, { list: 'bullet' }],
+        ]
+      }
+    })
 
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],

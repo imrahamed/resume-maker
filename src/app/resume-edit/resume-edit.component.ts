@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormArray } from "@angular/forms";
+import { FormBuilder, Validators, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-resume-edit',
@@ -10,7 +10,16 @@ export class ResumeEditComponent implements OnInit {
 
   constructor(private fb: FormBuilder) { }
 
-  ngOnInit() {
+  get skills() {
+    return this.resumeForm.get('skills') as FormArray;
+  }
+
+  get education() {
+    return this.resumeForm.get('education') as FormArray;
+  }
+
+  get employment() {
+    return this.resumeForm.get('employment') as FormArray;
   }
 
 
@@ -26,7 +35,7 @@ export class ResumeEditComponent implements OnInit {
     }),
     website: [''],
     location: ['', Validators.required],
-    careerObjective: ['', [Validators.minLength(15), Validators.maxLength(100)]],
+    careerObjective: ['', [Validators.minLength(15), Validators.maxLength(1000)]],
     skills: this.fb.array([
       this.userSkills()
     ]),
@@ -38,8 +47,11 @@ export class ResumeEditComponent implements OnInit {
     ])
   });
 
+  ngOnInit() {
+  }
+
   onResumeSubmit(): void {
-    console.log(this.resumeForm.value)
+    console.log(JSON.stringify(this.resumeForm.value))
   }
 
   userSkills() {
@@ -67,18 +79,6 @@ export class ResumeEditComponent implements OnInit {
       endDate: ['', Validators.required],
       description: ['']
     })
-  }
-
-  get skills() {
-    return this.resumeForm.get("skills") as FormArray;
-  }
-
-  get education() {
-    return this.resumeForm.get("education") as FormArray;
-  }
-
-  get employment() {
-    return this.resumeForm.get("employment") as FormArray;
   }
 
   addNewSkill(): void {

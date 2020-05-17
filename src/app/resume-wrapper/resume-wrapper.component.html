@@ -1,7 +1,7 @@
 <div id="resumeWrapper">
     <div class="heading">
-        <div class="name">imran Ahmed</div>
-        <div class="title">Fullstack Developer</div>
+        <div class="name">{{ResumeData.firstName}} {{ResumeData.lastName}}</div>
+        <div class="title">{{ResumeData.jobTitle}}</div>
     </div>
     <div nz-row>
         <div class="sections-wrapper" nz-col nzSpan="16">
@@ -10,28 +10,32 @@
                     EXPERIENCE
                 </div>
                 <p class="divider"></p>
-                <span class="sec-sub-head">Fullstack Developer</span>
-                <span class="duration">May 2019 - Present</span>
-                <div class="sec-items">EXAMLY</div>
-                <div style="color: #5f5454;margin-bottom: 12px" [innerHtml]="sampleExp[0]"></div>
-                <span class="sec-sub-head">Fullstack Developer</span>
-                <span class="duration">May 2018 - May 2019</span>
-                <div class="sec-items">Juntrax Solutions</div>
-                <div style="color: #5f5454;margin-bottom: 12px" [innerHtml]="sampleExp[1]"></div>
+                <div *ngFor="let exp of ResumeData.employment">
+                    <span class="sec-sub-head">{{exp.jobTitle}}</span>
+                    <span class="duration">{{exp.startDate | date:'MMM y'}} - {{exp.endDate | date:'MMM y'}}</span>
+                    <div class="sec-items">{{exp.employer}}</div>
+                    <div style="color: #5f5454;margin-bottom: 12px" [innerHtml]="exp.description"></div>
+                    <br>
+                </div>
+                
             </div>
             <div class="section">
                 <div class="sec-heading">
                     EDUCATION
                 </div>
                 <p class="divider"></p>
-                <span class="sec-sub-head">Master of Computer Applications</span>
+                <div *ngFor="let edu of ResumeData.education;">
+                    <span class="sec-sub-head">{{edu.degree}}</span>
+                    <span class="duration">{{edu.startDate | date:'MMM y'}} - {{edu.endDate | date:'MMM y'}}</span>
+                    <div class="sec-items">{{edu.college}}</div>
+                    <div style="color: #5f5454;margin-bottom: 12px" [innerHtml]="edu.description"></div>
+                    <br>
+                </div>
+                
+                <!-- <span class="sec-sub-head">B.sc Information Technology</span>
                 <span class="duration">Aug 2015 - Jan 2017</span>
                 <div class="sec-items">Kumaraguru College of Technology</div>
-                <div style="color: #5f5454;margin-bottom: 12px" [innerHtml]="sampleEducation"></div>
-                <span class="sec-sub-head">B.sc Information Technology</span>
-                <span class="duration">Aug 2015 - Jan 2017</span>
-                <div class="sec-items">Kumaraguru College of Technology</div>
-                <div style="color: #5f5454;margin-bottom: 12px" [innerHtml]="sampleEducation"></div>
+                <div style="color: #5f5454;margin-bottom: 12px" [innerHtml]="sampleEducation"></div> -->
             </div>
         </div>
         <div class="sections-wrapper" nz-col nzSpan="8">
@@ -40,59 +44,28 @@
                     CONTACT
                 </div>
                 <p class="divider"></p>
-                <div class="sec-items">imrahamed@gmail.com</div>
-                <div class="sec-items">+919566890562</div>
-                <div class="sec-items">imrahamed@gmail.com</div>
-                <div class="sec-items">Bengaluru, India</div>
+                <div class="sec-items">{{ResumeData.email}}</div>
+                <div class="sec-items">{{ResumeData.phone.code}}-{{ResumeData.phone.number}}</div>
+                <div class="sec-items">{{ResumeData.website}}</div>
+                <div class="sec-items">{{ResumeData.location}}</div>
             </div>
             <div class="section">
                 <div class="sec-heading">
                     PROFILE
                 </div>
                 <p class="divider"></p>
-                <div class="sec-items">I'm a product person, a programmer,. I ❤ creating scalable web apps with amazingly great UI/UX. I'm interested in startups and especially B2B SaaS</div>
+                <div [innerHtml]="ResumeData.careerObjective" class="sec-items"></div>
             </div>
             <div class="section">
                 <div class="sec-heading">
                     SKILLS
                 </div>
                 <p class="divider"></p>
-                <div class="sec-items">Angular</div>
-                <div class="progress-Wrapper">
-                    <nz-progress [nzStrokeColor]="yellow" [nzPercent]="80" [nzShowInfo]="false"></nz-progress>
-                </div>
-                
-                <div class="sec-items">Express</div>
-                <div class="progress-Wrapper">
-                    <nz-progress [nzStrokeColor]="yellow" [nzPercent]="60" [nzShowInfo]="false"></nz-progress>
-                </div>
-                <div class="sec-items">Hapi.js</div>
-                <div class="progress-Wrapper">
-                    <nz-progress [nzStrokeColor]="yellow" [nzPercent]="40" [nzShowInfo]="false"></nz-progress>
-                </div>
-                <div class="sec-items">Ionic</div>
-                <div class="progress-Wrapper">
-                    <nz-progress [nzStrokeColor]="yellow" [nzPercent]="100" [nzShowInfo]="false"></nz-progress>
-                </div>
-                <div class="sec-items">HTML</div>
-                <div class="progress-Wrapper">
-                    <nz-progress [nzStrokeColor]="yellow" [nzPercent]="60" [nzShowInfo]="false"></nz-progress>
-                </div>
-                <div class="sec-items">CSS</div>
-                <div class="progress-Wrapper">
-                    <nz-progress [nzStrokeColor]="yellow" [nzPercent]="40" [nzShowInfo]="false"></nz-progress>
-                </div>
-                <div class="sec-items">React</div>
-                <div class="progress-Wrapper">
-                    <nz-progress [nzStrokeColor]="yellow" [nzPercent]="60" [nzShowInfo]="false"></nz-progress>
-                </div>
-                <div class="sec-items">Docker</div>
-                <div class="progress-Wrapper">
-                    <nz-progress [nzStrokeColor]="yellow" [nzPercent]="80" [nzShowInfo]="false"></nz-progress>
-                </div>
-                <div class="sec-items">Kubernetes</div>
-                <div class="progress-Wrapper">
-                    <nz-progress [nzStrokeColor]="yellow" [nzPercent]="80" [nzShowInfo]="false"></nz-progress>
+                <div *ngFor="let skill of ResumeData.skills">
+                    <div class="sec- items">{{skill.skillName}}</div>
+                    <div class="progress-Wrapper">
+                        <nz-progress [nzStrokeColor]="yellow" [nzPercent]="skill.skillRating * 20" [nzShowInfo]="false"></nz-progress>
+                    </div>
                 </div>
             </div>
         </div>
