@@ -25,6 +25,7 @@ export class ResumeEditComponent implements OnInit {
     this.loading = true;
     this.dbService.getByKey('documents', this.id).then(
       resume => {
+        console.log(resume)
         this.dataForDb = resume;
         this.updateDataToFields();
         this.message.success("Data Retreived");
@@ -40,8 +41,63 @@ export class ResumeEditComponent implements OnInit {
 
   updateDataToFields(): void {
     if (this.dataForDb.resumeData) {
-      this.resumeForm.patchValue(this.dataForDb.resumeData)
+      this.resumeForm.patchValue({
+        firstName: this.dataForDb.resumeData.firstName,
+        lastName: this.dataForDb.resumeData.lastName,
+        jobTitle: this.dataForDb.resumeData.jobTitle,
+        email: this.dataForDb.resumeData.email,
+        dateOfBirth: this.dataForDb.resumeData.dateOfBirth,
+        phone: this.dataForDb.resumeData.phone,
+        website: this.dataForDb.resumeData.website,
+        location: this.dataForDb.resumeData.location,
+        careerObjective: this.dataForDb.resumeData.careerObjective
+      })
+      this.resumeForm.setControl("skills", this.setExistingSkill(this.dataForDb.resumeData.skills));
+      this.resumeForm.setControl("education", this.setExistingEducation(this.dataForDb.resumeData.education));
+      this.resumeForm.setControl("employment", this.setExistingEmployment(this.dataForDb.resumeData.employment));
     }
+  }
+
+  setExistingSkill(skills): FormArray {
+    const formArray = new FormArray([]);
+    skills.forEach(s => {
+      formArray.push(this.fb.group({
+        skillName: s.skillName,
+        skillRating: s.skillRating
+      }));
+    });
+    return formArray;
+  }
+
+
+  setExistingEmployment(employment): FormArray {
+    const formArray = new FormArray([]);
+    employment.forEach(s => {
+      formArray.push(this.fb.group({
+        jobTitle: s.jobTitle,
+        employer: s.employer,
+        startDate: s.startDate,
+        endDate: s.endDate,
+        description: s.description,
+        isCurrent: s.isCurrent
+      }));
+    });
+    return formArray;
+  }
+
+
+  setExistingEducation(education): FormArray {
+    const formArray = new FormArray([]);
+    education.forEach(s => {
+      formArray.push(this.fb.group({
+        degree: s.degree,
+        college: s.college,
+        startDate: s.startDate,
+        endDate: s.endDate,
+        description: s.description
+      }));
+    });
+    return formArray;
   }
 
   updateById(): void {
@@ -112,6 +168,7 @@ export class ResumeEditComponent implements OnInit {
       employer: ['', Validators.required],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
+      isCurrent: [false],
       description: ['']
     })
   }
