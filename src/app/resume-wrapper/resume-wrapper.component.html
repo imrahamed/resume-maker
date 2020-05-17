@@ -1,9 +1,10 @@
 <div id="resumeWrapper">
-    <div class="heading">
+    <nz-skeleton *ngIf="loading" [nzActive]="true"></nz-skeleton>
+    <div *ngIf="!loading" class="heading">
         <div class="name">{{ResumeData.firstName}} {{ResumeData.lastName}}</div>
         <div class="title">{{ResumeData.jobTitle}}</div>
     </div>
-    <div nz-row>
+    <div *ngIf="!loading"  nz-row>
         <div class="sections-wrapper" nz-col nzSpan="16">
             <div class="section">
                 <div class="sec-heading">
@@ -45,7 +46,7 @@
                 </div>
                 <p class="divider"></p>
                 <div class="sec-items">{{ResumeData.email}}</div>
-                <div class="sec-items">{{ResumeData.phone.code}}-{{ResumeData.phone.number}}</div>
+                <div *ngIf="ResumeData.phone" class="sec-items">{{ResumeData.phone.code}}-{{ResumeData.phone.number}}</div>
                 <div class="sec-items">{{ResumeData.website}}</div>
                 <div class="sec-items">{{ResumeData.location}}</div>
             </div>

@@ -3,6 +3,7 @@ import { FormBuilder, Validators, FormArray } from '@angular/forms';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { ActivatedRoute } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-resume-edit',
@@ -13,6 +14,7 @@ export class ResumeEditComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private dbService: NgxIndexedDBService,
               private route: ActivatedRoute,
+              private dataService : DataService,
               private message: NzMessageService) { }
 
   get skills() {
@@ -66,6 +68,7 @@ export class ResumeEditComponent implements OnInit {
       resume => {
         console.log(resume);
         this.dataForDb = resume;
+        this.dataService.resumesendMessage(this.dataForDb);
         this.updateDataToFields();
         this.message.success('Data Retreived');
         this.loading = false;
@@ -143,6 +146,7 @@ export class ResumeEditComponent implements OnInit {
     this.loading = true;
     this.dbService.update('documents', this.dataForDb).then(
       () => {
+        this.dataService.resumesendMessage(this.dataForDb);
         this.message.success('Data Updated');
         this.loading = false;
       },
