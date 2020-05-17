@@ -1,0 +1,213 @@
+<div class="wrapper">
+    <h1 class="edit-header">Fill Resume</h1>
+    <form [formGroup]="resumeForm" (submit)="onResumeSubmit()">
+        <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="firstName">First Name</nz-form-label>
+            <nz-form-control [nzSpan]="14">
+                <input nz-input name="firstName" type="text" formControlName="firstName">
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="lastName">Last Name</nz-form-label>
+            <nz-form-control [nzSpan]="14">
+                <input nz-input name="lastName" type="text" formControlName="lastName">
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="email">Job Title</nz-form-label>
+            <nz-form-control [nzSpan]="14">
+                <input nz-input name="jobTitle" type="text" formControlName="jobTitle">
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="email">Email</nz-form-label>
+            <nz-form-control [nzSpan]="14">
+                <input nz-input name="email" type="email" formControlName="email">
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="dateOfBirth">Date Of Birth</nz-form-label>
+            <nz-form-control [nzSpan]="14">
+                <nz-date-picker [nzSize]="size" name="dateOfBirth" type="text" formControlName="dateOfBirth">
+                </nz-date-picker>
+            </nz-form-control>
+        </nz-form-item>
+        <div formGroupName="phone">
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="number">Phone</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24">
+                    <nz-input-group [nzAddOnBefore]="addOnBeforePhone">
+                        <ng-template #addOnBeforePhone>
+                            <nz-select formControlName="code" name="code" class="phone-select">
+                                <nz-option nzLabel="+91" nzValue="+91"></nz-option>
+                            </nz-select>
+                        </ng-template>
+                        <input name="number" formControlName="number" nz-input />
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="website">Website</nz-form-label>
+            <nz-form-control [nzSpan]="14">
+                <input formControlName="website" name="website" nz-input />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="location">Location</nz-form-label>
+            <nz-form-control [nzSpan]="14">
+                <textarea nz-input name="location" type="text" formControlName="location"
+                    [nzAutosize]="{ minRows: 2, maxRows: 6 }"></textarea>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="careerObjective">Career Objective</nz-form-label>
+            <nz-form-control [nzSpan]="14">
+                <textarea nz-input name="careerObjective" type="text" formControlName="careerObjective"
+                    [nzAutosize]="{ minRows: 2, maxRows: 6 }"></textarea>
+            </nz-form-control>
+        </nz-form-item>
+        <br />
+        <div formArrayName="skills">
+
+            <nz-form-label [nzSpan]="6">Skills</nz-form-label>
+            <button type="button" nz-button nzType="primary" (click)="addNewSkill()" [nzSize]="size" nzShape="round"><i
+                    nz-icon nzType="plus-square" nzTheme="outline"></i>Add Skill</button>
+
+            <div *ngFor="let skill of skills.controls; let i = index;">
+                <div [formGroupName]="i">
+                    <br>
+                    <nz-card style="max-width: 400px;display: block;margin: 0 auto;" [nzExtra]="skillTemplate">
+                        <nz-form-item>
+                            <nz-form-label [nzSpan]="4" nzFor="skillName">Name</nz-form-label>
+                            <nz-form-control [nzSpan]="20">
+                                <input formControlName="skillName" name="skillName" nz-input />
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-label [nzSpan]="6" nzFor="skillRating">Skill Rating</nz-form-label>
+                            <nz-form-control [nzSpan]="16">
+                                <nz-slider [nzMin]="0" [nzStep]=".1" [nzMax]="5" formControlName="skillRating"
+                                    name="skillRating">
+                                </nz-slider>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </nz-card>
+                    <ng-template #skillTemplate>
+                        <button type="button" nz-button nzType="danger" (click)="removeSkill(i)" [nzSize]="size"
+                            nzShape="circle"><i nz-icon nzType="delete" nzTheme="outline"></i></button>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div formArrayName="education">
+            <nz-form-label [nzSpan]="6">Educations</nz-form-label>
+            <button nz-button nzType="primary" type="button" (click)="addNewEducation()" [nzSize]="size"
+                nzShape="round"><i nz-icon nzType="plus-square" nzTheme="outline"></i>Add Education</button>
+            <div *ngFor="let edu of education.controls; let j = index;">
+                <div [formGroupName]="j">
+                    <br />
+                    <nz-card style="max-width: 400px;display: block;margin: 0 auto;" [nzExtra]="educationTemplate">
+                        <nz-form-item>
+                            <nz-form-label [nzSpan]="6" nzFor="degree">Degree</nz-form-label>
+                            <nz-form-control [nzSpan]="18">
+                                <input formControlName="degree" name="degree" nz-input />
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-label [nzSpan]="6" nzFor="college">College</nz-form-label>
+                            <nz-form-control [nzSpan]="18">
+                                <input formControlName="college" name="college" nz-input />
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-label [nzSpan]="6" nzFor="startDate">Start Date</nz-form-label>
+                            <nz-form-control [nzSpan]="18">
+                                <nz-date-picker [nzSize]="size" type="text" name="startDate"
+                                    formControlName="startDate">
+                                </nz-date-picker>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-label [nzSpan]="6" nzFor="endDate">End Date</nz-form-label>
+                            <nz-form-control [nzSpan]="18">
+                                <nz-date-picker [nzSize]="size" type="text" name="endDate" formControlName="endDate">
+                                </nz-date-picker>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-label [nzSpan]="6" nzFor="description">Description</nz-form-label>
+                            <nz-form-control [nzSpan]="18">
+                                <textarea nz-input name="description" type="text" formControlName="description"
+                                    [nzAutosize]="{ minRows: 3, maxRows: 6 }"></textarea>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </nz-card>
+                    <ng-template #educationTemplate>
+                        <button type="button" nz-button nzType="danger" (click)="removeEducation(j)" [nzSize]="size"
+                            nzShape="circle"><i nz-icon nzType="delete" nzTheme="outline"></i></button>
+                    </ng-template>
+                    <br />
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <div formArrayName="employment">
+            <nz-form-label [nzSpan]="6">Employments</nz-form-label>
+            <button nz-button nzType="primary" type="button" (click)="addNewEmployment()" [nzSize]="size"
+                nzShape="round"><i nz-icon nzType="plus-square" nzTheme="outline"></i>Add Employment</button>
+            <div *ngFor="let emp of employment.controls; let j = index;">
+                <div [formGroupName]="j">
+                    <br />
+                    <nz-card style="max-width: 400px;display: block;margin: 0 auto;" [nzExtra]="employmentTemplate">
+                        <nz-form-item>
+                            <nz-form-label [nzSpan]="6" nzFor="jobTitle">Job Title</nz-form-label>
+                            <nz-form-control [nzSpan]="18">
+                                <input formControlName="jobTitle" name="jobTitle" nz-input />
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-label [nzSpan]="6" nzFor="employer">Employer</nz-form-label>
+                            <nz-form-control [nzSpan]="18">
+                                <input formControlName="employer" name="employer" nz-input />
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-label [nzSpan]="6" nzFor="startDate">Start Date</nz-form-label>
+                            <nz-form-control [nzSpan]="18">
+                                <nz-date-picker [nzSize]="size" type="text" name="startDate"
+                                    formControlName="startDate">
+                                </nz-date-picker>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-label [nzSpan]="6" nzFor="endDate">End Date</nz-form-label>
+                            <nz-form-control [nzSpan]="18">
+                                <nz-date-picker [nzSize]="size" type="text" name="endDate" formControlName="endDate">
+                                </nz-date-picker>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-label [nzSpan]="6" nzFor="description">Description</nz-form-label>
+                            <nz-form-control [nzSpan]="18">
+                                <textarea nz-input name="description" type="text" formControlName="description"
+                                    [nzAutosize]="{ minRows: 3, maxRows: 6 }"></textarea>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </nz-card>
+                    <ng-template #employmentTemplate>
+                        <button type="button" nz-button nzType="danger" (click)="removeEmployment(j)" [nzSize]="size"
+                            nzShape="circle"><i nz-icon nzType="delete" nzTheme="outline"></i></button>
+                    </ng-template>
+
+                </div>
+            </div>
+        </div>
+        <br />
+        <button nz-button nzType="primary" class="resume-submit" [disabled]="!resumeForm.valid"
+            nzType="primary">Add</button>
+        <!-- <button nz-button nzType="primary" (click)="handleOk()" [nzLoading]="isConfirmLoading">Add</button> -->
+    </form>
+</div>

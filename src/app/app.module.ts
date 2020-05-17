@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
@@ -13,11 +14,13 @@ import { HomeComponent } from './home/home.component';
 import { NgxIndexedDBModule, DBConfig } from 'ngx-indexed-db';
 import { ResumeLayoutComponent } from './resume-layout/resume-layout.component';
 import { ResumeWrapperComponent } from './resume-wrapper/resume-wrapper.component';
+import { ReactiveFormsModule } from "@angular/forms";
+import { ResumeEditComponent } from './resume-edit/resume-edit.component';
 
 registerLocaleData(en);
 
- 
-const dbConfig: DBConfig  = {
+
+const dbConfig: DBConfig = {
   name: 'Resume-Maker',
   version: 1,
   objectStoresMeta: [{
@@ -25,7 +28,7 @@ const dbConfig: DBConfig  = {
     storeConfig: { keyPath: 'id', autoIncrement: true },
     storeSchema: [
       { name: 'name', keypath: 'name', options: { unique: false } },
-      { name: 'descriptions', keypath: 'descriptions', options: { unique: false }},
+      { name: 'descriptions', keypath: 'descriptions', options: { unique: false } },
       { name: 'resumeData', keypath: 'resumeData', options: { unique: false } }
     ]
   }]
@@ -36,7 +39,8 @@ const dbConfig: DBConfig  = {
     AppComponent,
     HomeComponent,
     ResumeLayoutComponent,
-    ResumeWrapperComponent
+    ResumeWrapperComponent,
+    ResumeEditComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,9 @@ const dbConfig: DBConfig  = {
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NgxIndexedDBModule.forRoot(dbConfig)
+    NgxIndexedDBModule.forRoot(dbConfig),
+    ReactiveFormsModule,
+
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
