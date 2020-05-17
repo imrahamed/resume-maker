@@ -25,7 +25,6 @@ export class ResumeEditComponent implements OnInit {
     this.loading = true;
     this.dbService.getByKey('documents', this.id).then(
       resume => {
-        console.log(resume)
         this.dataForDb = resume;
         this.updateDataToFields();
         this.message.success("Data Retreived");
