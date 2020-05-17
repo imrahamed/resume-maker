@@ -1,6 +1,10 @@
 #Wrapper{
     padding: 12px;
 }
+.div-a-half{
+    display: inline-block;
+    width: 50%;
+}
 
 .phone-select {
     width: 70px;

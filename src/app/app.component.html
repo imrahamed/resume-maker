@@ -2,7 +2,8 @@
  <nz-layout>
       <nz-header>
         <div class="heading">Make resume Simple</div>
-        <span (click)="showModal()" id="addNew">⊕ Add New</span>
+        <span *ngIf="isHome()" (click)="showModal()" id="addNew">⊕ Add New</span>
+        <span *ngIf="!isHome()" (click)="download()"  id="addNew">Download</span>
       </nz-header>
       <nz-content>
         <div class="inner-content"><router-outlet></router-outlet></div>

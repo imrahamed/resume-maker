@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { DataService } from './data.service';
+import { PrintPDF } from 'print-pdf';
+
 
 @Component({
   selector: 'app-root',
@@ -21,7 +23,7 @@ export class AppComponent implements OnInit {
 
   handleOk(): void {
     this.isConfirmLoading = true;
-    this.dbService.add('documents', this.model).then((res) =>{
+    this.dbService.add('documents', this.model).then((res) => {
       this.isVisible = false;
       this.isConfirmLoading = false;
       this.model = {};
@@ -31,10 +33,17 @@ export class AppComponent implements OnInit {
     });
   }
 
-  ngOnInit(){
+  ngOnInit() {
   }
 
   handleCancel(): void {
     this.isVisible = false;
+  }
+
+  isHome() {
+    return !window.location.pathname.length;
+  }
+  download() {
+    new PrintPDF(document.getElementById('resumeWrapper')).printPDF();
   }
 }
