@@ -41,7 +41,7 @@ export class AppComponent implements OnInit {
   }
 
   isHome() {
-    return !window.location.pathname.length;
+    return !(window.location.pathname.length > 1);
   }
   download() {
     new PrintPDF(document.getElementById('resumeWrapper')).printPDF();
